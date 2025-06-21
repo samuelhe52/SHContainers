@@ -9,7 +9,7 @@ public struct SHList<Content: View>: View {
     var content: Content
     let alignment: HorizontalAlignment
     
-    public init(@ViewBuilder content: () -> Content, alignment: HorizontalAlignment = .leading) {
+    public init(@ViewBuilder content: () -> Content, alignment: HorizontalAlignment = .center) {
         self.content = content()
         self.alignment = alignment
     }
@@ -63,7 +63,7 @@ public struct SHSection<Content: View>: View {
             .padding(.bottom, 10)
             .background {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(.background)
+                    .fill(Color(.secondarySystemGroupedBackground))
             }
         }
         .buttonStyle(.borderless)
