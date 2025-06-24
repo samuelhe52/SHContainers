@@ -9,7 +9,7 @@ public struct SHList<Content: View>: View {
     var content: Content
     let alignment: HorizontalAlignment
     
-    public init(@ViewBuilder content: () -> Content, alignment: HorizontalAlignment = .center) {
+    public init(alignment: HorizontalAlignment = .center, @ViewBuilder content: () -> Content) {
         self.content = content()
         self.alignment = alignment
     }
@@ -17,7 +17,7 @@ public struct SHList<Content: View>: View {
     public var body: some View {
         Color(.systemGroupedBackground)
             .ignoresSafeArea(.all)
-            .overlay{
+            .overlay {
                 ScrollView {
                     LazyVStack(alignment: alignment, spacing: 20) {
                         content
@@ -25,6 +25,7 @@ public struct SHList<Content: View>: View {
                     }
                 }
                 .padding(20)
+                .ignoresSafeArea(.all, edges: .bottom)
             }
     }
 }

@@ -84,10 +84,33 @@ struct Test2: View {
     }
 }
 
-#Preview {
-    Test1()
+struct Test3: View {
+    @State var showSheet = true
+    
+    var body: some View {
+        Button("Sheet") { showSheet = true }
+            .sheet(isPresented: $showSheet) {
+                if #available(iOS 16.0, *) {
+                    NavigationStack {
+                        Test2()
+                            .navigationTitle("123")
+                            .navigationBarTitleDisplayMode(.inline)
+                    }
+                } else {
+                    Test2()
+                }
+            }
+    }
 }
 
+//#Preview {
+//    Test1()
+//}
+//
+//#Preview {
+//    Test2()
+//}
+
 #Preview {
-    Test2()
+    Test3()
 }
