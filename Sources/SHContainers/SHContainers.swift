@@ -9,7 +9,7 @@ public struct SHList<Content: View>: View {
     var content: Content
     let alignment: HorizontalAlignment
     
-    public init(@ViewBuilder content: () -> Content, alignment: HorizontalAlignment = .center) {
+    public init(alignment: HorizontalAlignment = .center, @ViewBuilder content: () -> Content) {
         self.content = content()
         self.alignment = alignment
     }
